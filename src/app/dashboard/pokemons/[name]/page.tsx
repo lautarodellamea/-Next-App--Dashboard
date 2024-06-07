@@ -58,7 +58,7 @@ const getPokemon = async (name: string): Promise<Pokemon> => {
     })
       .then(resp => resp.json())
 
-    console.log("Se cargó:", pokemon.name)
+    // console.log("Se cargó:", pokemon.name)
 
     return pokemon
   } catch (error) {
