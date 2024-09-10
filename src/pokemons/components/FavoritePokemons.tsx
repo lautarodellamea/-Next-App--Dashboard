@@ -10,8 +10,10 @@ export const FavoritePokemons = () => {
 
 
 
-  const favoritePokemons = useAppSelector(state => Object.values(state.pokemons.favorites)) // transformo el objeto de pokemones a arreglo
+  const favoritePokemons = useAppSelector(state => Object.values(state.pokemons.favorites)) // en este codigo transformo state.pokemons.favorites que es un objeto, a arreglo
   // console.log((favoritePokemons))
+
+
 
   // const [pokemons, setPokemons] = useState(favoritePokemons)
 

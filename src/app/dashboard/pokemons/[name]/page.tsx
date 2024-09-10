@@ -10,6 +10,7 @@ interface Props {
 }
 
 // genero paginas estaticas al hacer el build (en build time)
+// para el SEO es mejor indexar las paginas con el name en este caso (slug) en el url antes que con el id
 export async function generateStaticParams() {
 
 
@@ -22,7 +23,6 @@ export async function generateStaticParams() {
 
   return static151Pokemons.map(({ name }) => ({ name: name }))
 }
-
 
 // genero la metadata dinamicamente
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -42,6 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
 }
+
+
 
 const getPokemon = async (name: string): Promise<Pokemon> => {
 

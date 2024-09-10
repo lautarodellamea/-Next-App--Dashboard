@@ -18,7 +18,9 @@ export const PokemonCard = ({ pokemon }: Props) => {
 
   // preguntamos si existe ese pokemon por id
   // esto me hace un arreglo de 151 elementos donde o hay pokemon o undefined, en caso de que querramos cambiar el undefined por un true o false usamos la doble negacion, ahora tendremos un arreglo de trues y falses
+  // nos sirve para ver cual esta en los favoritos y cuales no
   const isFavorite = useAppSelector(state => !!state.pokemons.favorites[id])
+  // console.log(isFavorite)
 
   const dispatch = useAppDispatch()
 
@@ -37,6 +39,8 @@ export const PokemonCard = ({ pokemon }: Props) => {
         <div className="flex flex-col items-center justify-center text-center p-6 bg-gray-800 border-b">
           <Image key={pokemon.id} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} width={0}
             height={0} style={{ width: 'auto', height: '100px' }} alt={pokemon.name} />
+          {/* https://nextjs.org/docs/app/api-reference/components/image#priority */}
+          {/* Image con priority se iran cargando a medida que aparezcan y no todas de una, por defecto esta en true y hace el lazyload */}
           <p className="pt-2 text-lg font-semibold text-gray-50 capitalize">{name}</p>
 
           <div className="mt-5">

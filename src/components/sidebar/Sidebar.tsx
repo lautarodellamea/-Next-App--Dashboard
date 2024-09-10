@@ -6,16 +6,28 @@ import { MdCatchingPokemon } from 'react-icons/md'
 
 const menuItems = [
   {
-    path: "/dashboard/main", icon: <IoBrowsersOutline size={40} />, title: "Dashboard", subtitle: "Visualización"
+    path: "/dashboard/main",
+    icon: <IoBrowsersOutline size={40} />,
+    title: "Dashboard",
+    subtitle: "Visualización"
   },
   {
-    path: "/dashboard/counter", icon: <IoCalculator size={40} />, title: "Counter", subtitle: "Contador Client Side"
+    path: "/dashboard/counter",
+    icon: <IoCalculator size={40} />,
+    title: "Counter",
+    subtitle: "Contador Client Side"
   },
   {
-    path: "/dashboard/pokemons", icon: <MdCatchingPokemon size={40} />, title: "Pokemons", subtitle: "Generación Estática"
+    path: "/dashboard/pokemons",
+    icon: <MdCatchingPokemon size={40} />,
+    title: "Pokemons",
+    subtitle: "Generación Estática"
   },
   {
-    path: "/dashboard/favorites", icon: <IoHeartOutline size={40} />, title: "Favoritos", subtitle: "Global State"
+    path: "/dashboard/favorites",
+    icon: <IoHeartOutline size={40} />,
+    title: "Favoritos",
+    subtitle: "Global State"
   }
 ]
 

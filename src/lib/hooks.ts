@@ -1,4 +1,5 @@
 // archivo barril de la doc oficial
+// mediante esto accederemos a las acciones, estados, etc
 
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import type { RootState, AppDispatch, AppStore } from './store'

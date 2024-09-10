@@ -3,22 +3,23 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
+// si veo als Props en un console log, tendremos los params y searchParams, y bueno los que yo defina
 interface Props {
   params: {
     id: string
   }
 }
 
-// genero paginas estaticas al hacer el build (en build time)
+// EN BUILD TIME - generacion estatica, antes de que la gente lo solicite, estos ya se crean en el build time, es decir 151 paginas estaticas
+// genero paginas estaticas al hacer el build (en build time), shortcut: gsp
+// hasta el 151 estan creados desde build time pero si un usuario busca el 152 este se generara del lado del servidor y creara el archivo estatico para servirlo a futureas peticiones
 export async function generateStaticParams() {
 
-
-
-  // esto crea un arreglo de 151 elementos, la v es el valor del elemento (ene ste caso undefined porque no teien nada) y el otro es el indice
-  const static151Pokemons = Array.from({ length: 151 }).map((v, i) => `${i + 1}`)
-
+  // esto crea un arreglo de 151 elementos, la v es el valor del elemento (ene ste caso undefined porque no teien nada) y el otro es el indice 
+  const static151Pokemons = Array.from({ length: 151 }).map((v, i) => `${i + 1}`) // le sumo 1 ya que el pokemon 0 no existe [1,2,3,4...151]
 
   // debemos regresar un arreglo con todos los params que queremos que sean usados a la hora de construccion (esto se ejecutara solo en build time)
+  // aca se regresa lo que queremos como params
   return static151Pokemons.map((id) => ({ id: id }))
 
   // return [
@@ -32,10 +33,15 @@ export async function generateStaticParams() {
 }
 
 
-// genero la metadata dinamicamente
+// genero la metadata dinamicamente, shortcut: genMeta
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   try {
+
+    // Realizamos una segunda consulta aquí. Esta consulta se ejecuta en tiempo de construcción (buildTime),
+    // y nunca mas se ejecutara, a menos que se cargue una nueva pagina que nunca eh mostrado
+    // ya que creamos 151 paginas en construccion, si aparece una nueva, ahi es donde podria ejecutarse nuevamente
+    // la revalidacion estara en el getPokemon
     const { id, name } = await getPokemon(params.id)
 
     return {
@@ -51,6 +57,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 }
 
+
+
 const getPokemon = async (id: string): Promise<Pokemon> => {
 
 
@@ -58,7 +66,7 @@ const getPokemon = async (id: string): Promise<Pokemon> => {
 
 
     const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
-      // cache: "force-cache",
+      // cache: "force-cache", // no-store, es para que se haga de nuevo la solicitud, no-cache es para no guardarla en cache
       next: {
         // cada 6 meses se revalidara
         revalidate: 60 * 60 * 30 * 6
@@ -73,7 +81,6 @@ const getPokemon = async (id: string): Promise<Pokemon> => {
     notFound()
   }
 }
-
 
 export default async function PokemonPage({ params }: Props) {
 
@@ -176,3 +183,6 @@ export default async function PokemonPage({ params }: Props) {
     </div>
   );
 }
+
+
+

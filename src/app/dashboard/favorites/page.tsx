@@ -1,3 +1,5 @@
+// USANDO EL GLOBAL STATE CON REDUX
+
 import { FavoritePokemons, PokemonGrid, PokemonsResponse, SimplePokemon } from "@/pokemons";
 import { IoHeartOutline } from "react-icons/io5";
 

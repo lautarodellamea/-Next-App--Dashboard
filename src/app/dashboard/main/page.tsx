@@ -1,8 +1,6 @@
 import { WidgetsGrid } from "@/components";
 
 
-
-
 export const metadata = {
   title: 'Admin dashboard',
   description: 'Admin dashboard',

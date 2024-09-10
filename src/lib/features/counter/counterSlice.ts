@@ -8,10 +8,11 @@ interface CounterState {
 
 
 const initialState: CounterState = {
-  count: 5,
-  isReady: false,
+  count: 50,
+  isReady: false, // esto lo uso para que al cambiar de pantalla no se me pierda el estado, al entrar de nuevo a la pantalla del componente y llaama nuevamente al initState, si ya se ejecuto una vez el isReady esta en true por lo que no se iniciara de vuelta, manteniendo asi el estado
 }
 
+// shortcurt: rxslice
 const counterSlice = createSlice({
   name: 'counter',
   initialState,
@@ -26,6 +27,7 @@ const counterSlice = createSlice({
     },
 
     addOne(state) {
+      // a diferencia de los reducer de react, en redux podemos mutar el state y redux-toolkit crea un estado nuevo
       state.count++;
 
     },
@@ -47,3 +49,7 @@ const counterSlice = createSlice({
 export const { addOne, substractOne, resetCount, initCounterState } = counterSlice.actions
 
 export default counterSlice.reducer
+
+
+
+

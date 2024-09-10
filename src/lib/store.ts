@@ -12,8 +12,8 @@ export const makeStore = () => {
     },
 
     // lo comento ya que lo estamos haciendo de otra manera usando el localStorage en redux (no recomendado)
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware()
-    //   .concat(localStorageMiddleware as Middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+      .concat(localStorageMiddleware as Middleware) // mediante el middleware podremos usar localStorage al interceptar ciertas acciones (forma recomendada)
   })
 }
 

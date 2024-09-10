@@ -1,8 +1,10 @@
+// https://nextjs.org/docs/app/building-your-application/routing/error-handling
+
 'use client' // Error components must be Client Components
 
 import { useEffect } from 'react'
 
-export default function Error({ error, reset, }: {
+export default function Error({ error, reset, }: { // el reset se usa para hacer un boton por ejemplo para recargar e intentar de nuevo
   error: Error
   reset: () => void
 }) {
@@ -17,8 +19,8 @@ export default function Error({ error, reset, }: {
 
       <div className="flex flex-col items-center justify-center">
         <p className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider text-gray-600 mt-8">500</p>
-        <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mt-2">Server Error pokemons</p>
-        <p className="md:text-lg xl:text-xl text-gray-500 mt-4">Whoops, something went wrong on our servers.</p>
+        <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mt-2">Server Error Pokemons</p>
+        <p className="md:text-lg xl:text-xl text-gray-500 mt-4">desde error.tsx</p>
       </div>
     </div>
   )
